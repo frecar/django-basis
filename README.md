@@ -8,10 +8,10 @@
     pip install django-basis
 
 
- - Python 3 support
- - Django Customer User support
+ - Python versions: 2.6, 2.7, 3.2, 3.3
+ - Support Django Customer User
 
-3
+
 ## Usage
 
 ```python
@@ -20,10 +20,14 @@ from basis.models import BaseModel
 class Person(BaseModel):
     name = models.Cha....
 
-
+#In view
 person = Person()
-
 person.save(current_user=request.user)
 
 
+#Delete person
+person.delete()
+
+#Restore deleted person
+person.restore()
 ```
