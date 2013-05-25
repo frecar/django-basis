@@ -16,9 +16,9 @@ install:
 
 
 script:
-  - coverage run -a setup.py test
+  - coverage run --source=basis setup.py test
   - coverage report
-  
+
 before_script:
   - psql -c 'create database django_basis;' -U postgres
 
