@@ -7,7 +7,8 @@
     pip install django-basis
 
 
-Support Customer user
+Python 3 support
+Django Customer User support
 
 ## Usage
 
