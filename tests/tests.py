@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 from django.contrib.auth import get_user_model
 from django.utils import unittest
-from models import Person
+from .models import Person
 
 
 class TestLoginCodes(unittest.TestCase):
