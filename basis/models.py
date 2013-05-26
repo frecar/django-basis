@@ -35,8 +35,8 @@ class BasisModel(models.Model):
 
     def delete(self, *args, **kwargs):
         self.deleted = True
-        self.save(*args, **kwargs)
+        self.save()
 
     def restore(self, *args, **kwargs):
         self.deleted = False
-        self.save(*args, **kwargs)
+        self.save()
