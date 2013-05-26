@@ -1,6 +1,6 @@
 from django.db import models
-from basis.models import BaseModel
+from basis.models import BasisModel
 
 
-class Person(BaseModel):
+class Person(BasisModel):
     name = models.CharField(max_length="100")
