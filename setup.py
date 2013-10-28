@@ -13,8 +13,8 @@ setup(
     description='Simple reusable django app for basic model functionality',
     packages=find_packages(exclude='tests'),
     tests_require=[
-        'django>=1.5',
+        'django>=1.4',
     ],
     test_suite='runtests.runtests',
     include_package_data=True,
-    )
+)
