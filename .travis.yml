@@ -10,6 +10,14 @@ env:
   - DJANGO_VERSION=1.4
   - DJANGO_VERSION=1.5
 
+matrix:
+  exclude:
+     - python: "3.2"
+          env: - DJANGO_VERSION=1.4
+     - python: "3.3"
+          env: - DJANGO_VERSION=1.4
+
+
 install:
   - pip install psycopg2
   - pip install django==$DJANGO_VERSION
