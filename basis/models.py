@@ -1,8 +1,8 @@
 from datetime import datetime
 
 from django.db import models
-from django.contrib.auth import get_user_model
 
+from basis.utils import User
 from .managers import BasisModelManager
 
 
@@ -10,10 +10,10 @@ class BasisModel(models.Model):
     deleted = models.BooleanField(default=False, editable=False)
 
     created_at = models.DateTimeField(default=datetime.now, editable=False, auto_now_add=True)
-    created_by = models.ForeignKey(get_user_model(), null=True, default=None, editable=False, related_name="%(class)s_created")
+    created_by = models.ForeignKey(User, null=True, default=None, editable=False, related_name="%(class)s_created")
 
     updated_at = models.DateTimeField(default=datetime.now, editable=False, auto_now=True)
-    updated_by = models.ForeignKey(get_user_model(), null=True, default=None, editable=False, related_name="%(class)s_updated")
+    updated_by = models.ForeignKey(User, null=True, default=None, editable=False, related_name="%(class)s_updated")
 
     objects = BasisModelManager()
     all_objects = models.Manager()
