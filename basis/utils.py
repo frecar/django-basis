@@ -17,9 +17,6 @@ def get_user_model():
         return User
 
 
-USERNAME_FIELD = getattr(get_user_model(), 'USERNAME_FIELD', 'username')
-
-
 def get_username(user):
     try:
         return user.get_username()
