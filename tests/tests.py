@@ -1,14 +1,14 @@
 # -*- coding: utf8 -*-
 from django.utils import unittest
-from basis.utils import User
+from basis.utils import get_user_model
 from .models import Person
 
 
 class TestLoginCodes(unittest.TestCase):
 
     def setUp(self):
-        self.user1 = User.objects.get_or_create(username="test1")[0]
-        self.user2 = User.objects.get_or_create(username="test2")[0]
+        self.user1 = get_user_model().objects.get_or_create(username="test1")[0]
+        self.user2 = get_user_model().objects.get_or_create(username="test2")[0]
 
     def tearDown(self):
         self.user1.delete()
