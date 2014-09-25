@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.db import models
 
-from .utils import AUTH_USER_MODEL
+from .compat import AUTH_USER_MODEL
 from .managers import BasisModelManager
 
 
