@@ -19,7 +19,7 @@ class Person(BasisModel):
     name = models.Charfield(max_length=50)
 
 # Save a person and register who did it
-person = Person()
+person = Person.objects.get(id=id)
 person.save(current_user=request.user)
 
 # Delete person (safe_delete)
