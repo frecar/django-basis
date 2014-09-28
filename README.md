@@ -18,9 +18,16 @@ from basis.models import BasisModel
 class Person(BasisModel):
     name = models.Charfield(max_length=50)
 
-# Save a person and register who did it
+# Save changes on objects and register who did it
 person = Person.objects.get(id=id)
+person.name = "Fredrik"
 person.save(current_user=request.user)
+
+# See meta info about the object
+print person.created_at => datetime object
+print person.created_by => user object (creator)
+print person.updated_at => datetime object
+print person.updated_by => user object (updater)
 
 # Delete person (safe_delete)
 person.delete()
