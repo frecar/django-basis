@@ -6,7 +6,6 @@
 ## Installation
     pip install django-basis
 
-
  - Python versions: 2.6, 2.7, 3.2, 3.3
  - Support Django Customer User
 
@@ -14,19 +13,18 @@
 ## Usage
 
 ```python
-from basis.models import BaseModel
+from basis.models import BasisModel
 
-class Person(BaseModel):
+class Person(BasisModel):
     name = models.Cha....
 
-#In view
+# In view
 person = Person()
 person.save(current_user=request.user)
 
-
-#Delete person
+# Delete person
 person.delete()
 
-#Restore deleted person
+# Restore deleted person
 person.restore()
 ```
