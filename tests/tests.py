@@ -1,6 +1,6 @@
 # -*- coding: utf8 -*-
 from django.utils import unittest
-from basis.utils import get_user_model
+from basis.compat import get_user_model
 from .models import Person
 
 
