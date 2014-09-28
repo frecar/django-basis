@@ -16,15 +16,17 @@
 from basis.models import BasisModel
 
 class Person(BasisModel):
-    name = models.Cha....
+    name = models.Charfield(max_length=50)
 
-# In view
+# Save a person and register who did it
 person = Person()
 person.save(current_user=request.user)
 
-# Delete person
+# Delete person (safe_delete)
 person.delete()
 
+
 # Restore deleted person
+person = Person.all_objects.get(id=id)
 person.restore()
 ```
