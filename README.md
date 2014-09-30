@@ -23,6 +23,9 @@ person = Person.objects.get(id=id)
 person.name = "Fredrik"
 person.save(current_user=request.user)
 
+# Or create a new object and register who did it
+person = Person.objects.create(name="Fredrik")
+
 # See meta info about the object
 print person.created_at # datetime object
 print person.created_by # user object (creator)
