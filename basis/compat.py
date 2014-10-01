@@ -18,10 +18,3 @@ def get_user_model():
     else:
         from django.contrib.auth.models import User
         return User
-
-
-def get_username(user):
-    try:
-        return user.get_username()
-    except AttributeError:
-        return user.username
