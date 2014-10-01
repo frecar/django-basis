@@ -24,10 +24,10 @@ class BasisModel(models.Model):
         abstract = True
 
     def save(self, *args, **kwargs):
-        self._set_user(kwargs)
+        self.__set_user(kwargs)
         super(BasisModel, self).save(*args, **kwargs)
 
-    def _set_user(self, kwargs):
+    def __set_user(self, kwargs):
         if 'current_user' in kwargs:
             current_user = kwargs.pop("current_user")
 
