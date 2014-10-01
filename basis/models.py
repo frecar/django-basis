@@ -24,7 +24,10 @@ class BasisModel(models.Model):
         abstract = True
 
     def save(self, *args, **kwargs):
+        self.__set_user(kwargs)
+        super(BasisModel, self).save(*args, **kwargs)
 
+    def __set_user(self, kwargs):
         if 'current_user' in kwargs:
             current_user = kwargs.pop("current_user")
 
@@ -32,8 +35,6 @@ class BasisModel(models.Model):
                 self.created_by = current_user
 
             self.updated_by = current_user
-
-        super(BasisModel, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
         self.deleted = True

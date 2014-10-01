@@ -16,25 +16,34 @@ class TestLoginCodes(unittest.TestCase):
 
         Person.all_objects.all().delete()
 
-    def test_crate_person_without_user(self):
+    def test_save_person_without_user(self):
         person = Person()
         person.save()
 
         self.assertEqual(person.created_by, None)
         self.assertEqual(person.updated_by, None)
 
-    def test_create_person_with_user(self):
-
+    def test_save_person_with_user(self):
         person = Person()
         person.save(current_user=self.user1)
 
         self.assertEqual(person.created_by, self.user1)
         self.assertEqual(person.updated_by, self.user1)
 
-    def test_update_person_with_user(self):
+    def test_create_person_without_user(self):
+        person = Person.objects.create()
 
-        person = Person()
-        person.save(current_user=self.user1)
+        self.assertEqual(person.created_by, None)
+        self.assertEqual(person.updated_by, None)
+
+    def test_create_person_with_user(self):
+        person = Person.objects.create(current_user=self.user1)
+
+        self.assertEqual(person.created_by, self.user1)
+        self.assertEqual(person.updated_by, self.user1)
+
+    def test_update_person_with_user(self):
+        person = Person.objects.create(current_user=self.user1)
 
         self.assertEqual(person.created_by, self.user1)
         self.assertEqual(person.updated_by, self.user1)
@@ -45,9 +54,7 @@ class TestLoginCodes(unittest.TestCase):
         self.assertEqual(person.updated_by, self.user2)
 
     def test_delete_person(self):
-
-        person = Person()
-        person.save(current_user=self.user1)
+        person = Person.objects.create(current_user=self.user1)
 
         self.assertEqual(Person.objects.all().count(), 1)
         person.delete()
