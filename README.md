@@ -1,5 +1,5 @@
 # django-basis
-[![Build Status](https://travis-ci.org/frecar/django-basis.png?branch=master)](https://travis-ci.org/frecar/django-basis)
+[![Build status](https://ci.frigg.io/badges/frecar/django-basis/)](https://ci.frigg.io/frecar/django-basis/)
 [![Coverage Status](https://coveralls.io/repos/frecar/django-basis/badge.png)](https://coveralls.io/r/frecar/django-basis)
 [![PyPi version](https://pypip.in/v/django-basis/badge.png)](https://crate.io/packages/django-basis/)
 
