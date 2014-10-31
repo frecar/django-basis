@@ -14,14 +14,20 @@ def _now():
     return datetime.now()
 
 
-class BasisModel(models.Model):
+class TimeStampModel(models.Model):
+    created_at = models.DateTimeField(default=_now, editable=False)
+    updated_at = models.DateTimeField(default=_now, editable=False)
+
+    def save(self, *args, **kwargs):
+        self.updated_at = _now()
+        super(TimeStampModel, self).save(*args, **kwargs)
+
+
+class BasisModel(TimeStampModel):
     deleted = models.BooleanField(default=False, editable=False)
 
-    created_at = models.DateTimeField(default=_now, editable=False)
     created_by = models.ForeignKey(AUTH_USER_MODEL, null=True, default=None, editable=False,
                                    related_name="%(class)s_created")
-
-    updated_at = models.DateTimeField(default=_now, editable=False)
     updated_by = models.ForeignKey(AUTH_USER_MODEL, null=True, default=None, editable=False,
                                    related_name="%(class)s_updated")
 
@@ -33,7 +39,6 @@ class BasisModel(models.Model):
 
     def save(self, *args, **kwargs):
         self.__set_user(kwargs)
-        self.updated_at = _now()
         super(BasisModel, self).save(*args, **kwargs)
 
     def __set_user(self, kwargs):
@@ -47,8 +52,8 @@ class BasisModel(models.Model):
 
     def delete(self, *args, **kwargs):
         self.deleted = True
-        self.save()
+        self.save(*args, **kwargs)
 
     def restore(self, *args, **kwargs):
         self.deleted = False
-        self.save()
+        self.save(*args, **kwargs)
