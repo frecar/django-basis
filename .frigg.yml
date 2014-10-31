@@ -1,0 +1,3 @@
+tasks:
+  - tox
+  - flake8
