@@ -99,4 +99,3 @@ class TestBasisModel(unittest.TestCase):
 
         person.restore()
         self.assertEqual(Person.objects.all().count(), 1)
-
