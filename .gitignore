@@ -3,5 +3,6 @@
 .coverage
 django_basis.egg-info
 dist
+build
 
 .tox/
