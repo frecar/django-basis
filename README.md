@@ -15,7 +15,7 @@
 ```python
 from basis.models import TimeStampModel
 
-class Person(BasisModel):
+class Person(TimeStampModel):
     name = models.Charfield(max_length=50)
 
 person = Person.objects.create(name="Fredrik"))
