@@ -12,6 +12,8 @@
 
 ## Usage of TimeStampModel
 
+Adds `created_at` and `updated_at` to models.
+
 ```python
 from basis.models import TimeStampModel
 
@@ -31,7 +33,36 @@ print person.updated_at # (datetime at the moment of the update)
 ```
 
 
+## Usage of PersistentModel
+
+Safe deletion of objects. 
+```python
+from basis.models import PersistentModel
+
+class Person(PersistentModel):
+    name = models.Charfield(max_length=50)
+
+person = Person.objects.create(name="Fredrik"))
+
+# SafeDelete person (safe delete)
+person.delete()
+
+print Person.objects.all().count() # 0 - excludes deleted users
+print Person.all_objects.all().count() # 1 - includes deleted users
+
+# Restore deleted person
+person = Person.all_objects.get(id=person.id)
+person.restore()
+
+# If you really want to delete the object
+person = Person.all_objects.get(id=person.id)
+person.delete()
+```
+
+
 ## Usage of BasisModel
+
+Includes the functionality of both PersistentModel and TimeStampModel, while adding the fields `created_by` and `updated_by`.
 
 ```python
 from basis.models import BasisModel
@@ -48,22 +79,7 @@ person.save(current_user=request.user)
 person = Person.objects.create(name="Fredrik", current_user=request.user)
 
 # See meta info about the object
-print person.created_at # (datetime at the moment of the creation)
 print person.created_by # user object (creator)
-print person.updated_at # (datetime at the moment of the update)
 print person.updated_by # user object (updater)
-
-
-# Delete person (safe_delete)
-person = Person.objects.get(id=id)
-person.delete()
-
-# Restore deleted person
-person = Person.all_objects.get(id=id)
-person.restore()
-
-# If you really want to delete the object
-person = Person.all_objects.get(id=id)
-person.delete()
 
 ```
