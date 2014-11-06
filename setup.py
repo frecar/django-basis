@@ -6,7 +6,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
 
 setup(
     name="django-basis",
-    version='0.2.0',
+    version='0.3.0',
     url='http://github.com/frecar/django-basis',
     author='Fredrik Nygård Carlsen',
     author_email='me@frecar.no',
