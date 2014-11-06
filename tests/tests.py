@@ -42,6 +42,28 @@ class TestTimeStampModel(unittest.TestCase):
                                int(timezone.now().strftime('%Y%m%d%H%M%S')))
 
 
+class TestPersistentModel(unittest.TestCase):
+
+    def setUp(self):
+        self.user1 = get_user_model().objects.get_or_create(username='test1')[0]
+        self.user2 = get_user_model().objects.get_or_create(username='test2')[0]
+
+    def tearDown(self):
+        get_user_model().objects.all().delete()
+        Person.all_objects.all().delete()
+
+    def test_delete_person(self):
+        person = Person.objects.create(current_user=self.user1)
+
+        self.assertEqual(Person.objects.all().count(), 1)
+        person.delete()
+        self.assertEqual(Person.objects.all().count(), 0)
+        self.assertEqual(Person.all_objects.all().count(), 1)
+
+        person.restore()
+        self.assertEqual(Person.objects.all().count(), 1)
+
+
 class TestBasisModel(unittest.TestCase):
 
     def setUp(self):
@@ -88,14 +110,3 @@ class TestBasisModel(unittest.TestCase):
 
         self.assertEqual(person.created_by, self.user1)
         self.assertEqual(person.updated_by, self.user2)
-
-    def test_delete_person(self):
-        person = Person.objects.create(current_user=self.user1)
-
-        self.assertEqual(Person.objects.all().count(), 1)
-        person.delete()
-        self.assertEqual(Person.objects.all().count(), 0)
-        self.assertEqual(Person.all_objects.all().count(), 1)
-
-        person.restore()
-        self.assertEqual(Person.objects.all().count(), 1)
