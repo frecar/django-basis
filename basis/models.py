@@ -65,5 +65,3 @@ class BasisModel(TimeStampModel, PersistentModel):
                 self.created_by = current_user
 
             self.updated_by = current_user
-
-
