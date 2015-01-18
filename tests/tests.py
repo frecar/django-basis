@@ -66,6 +66,11 @@ class TestPersistentModel(unittest.TestCase):
         self.assertEqual(Person.objects.all().count(), 0)
         self.assertEqual(Person.all_objects.all().count(), 1)
 
+    def test_force_delete(self):
+        person = Person.objects.create(current_user=self.user1)
+        person.delete(force=True)
+        self.assertEqual(Person.all_objects.count(), 0)
+
 
 class TestBasisModel(unittest.TestCase):
 
