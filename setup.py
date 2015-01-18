@@ -4,6 +4,15 @@ from setuptools import setup, find_packages
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
 
+
+def _read_long_description():
+    try:
+        import pypandoc
+        return pypandoc.convert('README.md', 'rst')
+    except ImportError:
+        return None
+
+
 setup(
     name="django-basis",
     version='0.3.0',
@@ -11,6 +20,7 @@ setup(
     author='Fredrik Carlsen',
     author_email='fredrik@carlsen.io',
     description='Simple reusable django app for basic model functionality',
+    long_description=_read_long_description(),
     packages=find_packages(exclude='tests'),
     tests_require=[
         'django>=1.4',
