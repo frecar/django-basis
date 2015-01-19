@@ -15,7 +15,7 @@ def _read_long_description():
 
 setup(
     name="django-basis",
-    version='0.3.0',
+    version='0.3.2',
     url='http://github.com/frecar/django-basis',
     author='Fredrik Carlsen',
     author_email='fredrik@carlsen.io',
