@@ -1,4 +1,5 @@
 # -*- coding: utf8 -*-
+import sys
 from datetime import datetime
 
 from django.utils import unittest, timezone
@@ -6,6 +7,13 @@ from django.test.utils import override_settings
 
 from basis.compat import get_user_model
 from .models import Person
+
+PY3 = sys.version_info[0] == 3
+
+if PY3:
+    from unittest import mock
+else:
+    import mock
 
 
 class TestTimeStampModel(unittest.TestCase):
@@ -70,6 +78,12 @@ class TestPersistentModel(unittest.TestCase):
         person = Person.objects.create(current_user=self.user1)
         person.delete(force=True)
         self.assertEqual(Person.all_objects.count(), 0)
+
+    @mock.patch('django.db.models.base.Model.delete')
+    def test_delete_with_using(self, mock_delete):
+        person = Person.objects.create(current_user=self.user1)
+        person.delete(force=True, using='other_db')
+        mock_delete.assert_called_with('other_db')
 
 
 class TestBasisModel(unittest.TestCase):
