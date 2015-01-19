@@ -62,6 +62,9 @@ class TestPersistentModel(unittest.TestCase):
 
         person.restore()
         self.assertEqual(Person.objects.all().count(), 1)
+        Person.all_objects.all()[0].delete()
+        self.assertEqual(Person.objects.all().count(), 0)
+        self.assertEqual(Person.all_objects.all().count(), 1)
 
 
 class TestBasisModel(unittest.TestCase):
