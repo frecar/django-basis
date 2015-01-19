@@ -35,9 +35,12 @@ class PersistentModel(models.Model):
     class Meta:
         abstract = True
 
-    def delete(self, *args, **kwargs):
-        self.deleted = True
-        self.save(*args, **kwargs)
+    def delete(self, using=None, force=False):
+        if force:
+            super(PersistentModel, self).delete(using)
+        else:
+            self.deleted = True
+            self.save()
 
     def restore(self, *args, **kwargs):
         self.deleted = False

@@ -53,6 +53,10 @@ print Person.all_objects.all().count() # 1 - includes deleted users
 # Restore deleted person
 person = Person.all_objects.get(id=person.id)
 person.restore()
+
+# If you really want to delete the object
+person = Person.objects.create(name="Fredrik"))
+person.delete(force=True)
 ```
 
 
