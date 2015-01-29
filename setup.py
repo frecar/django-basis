@@ -8,8 +8,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
 def _read_long_description():
     try:
         import pypandoc
-        return pypandoc.convert('README.md', 'rst')
-    except ImportError:
+        return pypandoc.convert('README.md', 'rst', format='markdown')
+    except Exception:
         return None
 
 
