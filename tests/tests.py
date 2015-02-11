@@ -2,11 +2,14 @@
 import sys
 from datetime import datetime
 
+from rest_framework.test import APITestCase, force_authenticate, APIRequestFactory
+
 from django.utils import unittest, timezone
 from django.test.utils import override_settings
 
 from basis.compat import get_user_model
 from .models import Person
+from tests.views import BasisModelViewSet
 
 PY3 = sys.version_info[0] == 3
 
@@ -132,3 +135,35 @@ class TestBasisModel(unittest.TestCase):
 
         self.assertEqual(person.created_by, self.user1)
         self.assertEqual(person.updated_by, self.user2)
+
+class TestBasisSerializer(APITestCase):
+
+    def setUp(self):
+        self.user1 = get_user_model().objects.get_or_create(username="test1")[0]
+        self.user2 = get_user_model().objects.get_or_create(username="test2")[0]
+
+        self.factory = APIRequestFactory()
+        self.request_post = self.factory.post('/', {'name': 'username 123'})
+        self.view_post = BasisModelViewSet.as_view({'post': 'create'})
+
+        self.request_put = self.factory.put('/', {'name': 'username 321'})
+        self.view_put = BasisModelViewSet.as_view({'put': 'update'})
+
+    def test_created_by(self):
+        force_authenticate(self.request_post, user=self.user1)
+        response = self.view_post(self.request_post)
+
+        self.assertEqual(response.data['created_by'], self.user1.pk)
+        self.assertEqual(response.data['updated_by'], self.user1.pk)
+
+    def test_updated_by(self):
+        user = Person(name="username 123")
+        user.save(current_user=self.user1)
+        id = user.pk
+
+        force_authenticate(self.request_put, user=self.user2)
+        response = self.view_put(self.request_put, pk=id)
+
+        self.assertNotEqual(response.data['created_by'], self.user2.pk)
+        self.assertEqual(response.data['updated_by'], self.user2.pk)
+
