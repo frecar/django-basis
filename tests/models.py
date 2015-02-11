@@ -3,4 +3,4 @@ from basis.models import BasisModel
 
 
 class Person(BasisModel):
-    name = models.CharField(max_length="100")
+    name = models.CharField(max_length=100)

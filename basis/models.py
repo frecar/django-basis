@@ -57,6 +57,10 @@ class BasisModel(TimeStampModel, PersistentModel):
         abstract = True
 
     def save(self, *args, **kwargs):
+        try:
+            kwargs['current_user'] = self.current_user
+        except AttributeError:
+            pass
         self.__set_user(kwargs)
         super(BasisModel, self).save(*args, **kwargs)
 
