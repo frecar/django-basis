@@ -83,3 +83,15 @@ print person.created_by # user object (creator)
 print person.updated_by # user object (updater)
 
 ```
+
+## Usage of BasisSerializer
+
+Makes sure BasisModel objects created and updated have the `created_by` and `updated_by` fields set.
+
+```python
+from basis.serializers imoprt BasisSerializer
+
+class PersonSerializer(BasisSerializer):
+    class Meta:
+        model = Person
+```

@@ -9,7 +9,7 @@ from django.test.utils import override_settings
 
 from basis.compat import get_user_model
 from .models import Person
-from tests.views import BasisModelViewSet
+from .views import BasisModelViewSet
 
 PY3 = sys.version_info[0] == 3
 
@@ -136,6 +136,7 @@ class TestBasisModel(unittest.TestCase):
         self.assertEqual(person.created_by, self.user1)
         self.assertEqual(person.updated_by, self.user2)
 
+
 class TestBasisSerializer(APITestCase):
 
     def setUp(self):
@@ -166,4 +167,3 @@ class TestBasisSerializer(APITestCase):
 
         self.assertNotEqual(response.data['created_by'], self.user2.pk)
         self.assertEqual(response.data['updated_by'], self.user2.pk)
-

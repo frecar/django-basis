@@ -1,5 +1,5 @@
-from basis.basis_serializer import BasisSerializer
-from tests.models import Person
+from basis.serializers import BasisSerializer
+from .models import Person
 
 
 class PersonSerializer(BasisSerializer):
