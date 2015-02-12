@@ -10,6 +10,9 @@
  - Support Django Customer User
 
 
+## Documentation
+http://django-basis.readthedocs.org/en/latest/
+
 ## Usage of TimeStampModel
 
 Adds `created_at` and `updated_at` to models.
