@@ -1,6 +1,6 @@
 # django-basis
-[![Build status](https://ci.frigg.io/badges/frecar/django-basis/)](https://ci.frigg.io/frecar/django-basis/)
-[![Coverage Status](https://coveralls.io/repos/frecar/django-basis/badge.png)](https://coveralls.io/r/frecar/django-basis)
+[![Build status](https://ci.frigg.io/badges/frecar/django-basis/)](https://ci.frigg.io/frecar/django-basis/last/)
+[![Coverage Status](https://ci.frigg.io/badges/coverage/frecar/django-basis/)](https://ci.frigg.io/frecar/django-basis/last/)
 [![PyPi version](https://pypip.in/v/django-basis/badge.png)](https://crate.io/packages/django-basis/)
 
 ## Installation
