@@ -4,9 +4,9 @@ import sys
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
 
-from django.test.utils import get_runner
-from django.conf import settings
-import django
+from django.test.utils import get_runner  # noqa
+from django.conf import settings  # noqa
+import django  # noqa
 
 if django.VERSION >= (1, 7):
     django.setup()
