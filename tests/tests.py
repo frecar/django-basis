@@ -113,9 +113,9 @@ class TestBasisModel(unittest.TestCase):
         self.assertEqual(person.created_by, self.user1)
         self.assertEqual(person.updated_by, self.user1)
 
-        p = Person.objects.get(name='john doe')
-        self.assertEqual(p.created_by, self.user1)
-        self.assertEqual(p.updated_by, self.user1)
+        person_from_db = Person.objects.get(name='john doe')
+        self.assertEqual(person_from_db.created_by, self.user1)
+        self.assertEqual(person_from_db.updated_by, self.user1)
 
     def test_create_person_without_user(self):
         person = Person.objects.create(name='john doe')
@@ -123,9 +123,9 @@ class TestBasisModel(unittest.TestCase):
         self.assertEqual(person.created_by, None)
         self.assertEqual(person.updated_by, None)
 
-        p = Person.objects.get(name='john doe')
-        self.assertEqual(p.created_by, None)
-        self.assertEqual(p.updated_by, None)
+        person_from_db = Person.objects.get(name='john doe')
+        self.assertEqual(person_from_db.created_by, None)
+        self.assertEqual(person_from_db.updated_by, None)
 
     def test_create_person_with_user(self):
         person = Person.objects.create(name='john doe', current_user=self.user1)
@@ -133,9 +133,9 @@ class TestBasisModel(unittest.TestCase):
         self.assertEqual(person.created_by, self.user1)
         self.assertEqual(person.updated_by, self.user1)
 
-        p = Person.objects.get(name='john doe')
-        self.assertEqual(p.created_by, self.user1)
-        self.assertEqual(p.updated_by, self.user1)
+        person_from_db = Person.objects.get(name='john doe')
+        self.assertEqual(person_from_db.created_by, self.user1)
+        self.assertEqual(person_from_db.updated_by, self.user1)
 
     def test_update_person_with_user(self):
         person = Person.objects.create(name='john doe', current_user=self.user1)
@@ -143,18 +143,18 @@ class TestBasisModel(unittest.TestCase):
         self.assertEqual(person.created_by, self.user1)
         self.assertEqual(person.updated_by, self.user1)
 
-        p = Person.objects.get(name='john doe')
-        self.assertEqual(p.created_by, self.user1)
-        self.assertEqual(p.updated_by, self.user1)
+        person_from_db = Person.objects.get(name='john doe')
+        self.assertEqual(person_from_db.created_by, self.user1)
+        self.assertEqual(person_from_db.updated_by, self.user1)
 
         person.save(current_user=self.user2)
 
         self.assertEqual(person.created_by, self.user1)
         self.assertEqual(person.updated_by, self.user2)
 
-        p = Person.objects.get(name='john doe')
-        self.assertEqual(p.created_by, self.user1)
-        self.assertEqual(p.updated_by, self.user2)
+        person_from_db = Person.objects.get(name='john doe')
+        self.assertEqual(person_from_db.created_by, self.user1)
+        self.assertEqual(person_from_db.updated_by, self.user2)
 
 
 class TestBasisSerializer(APITestCase):
