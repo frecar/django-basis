@@ -11,5 +11,5 @@ tasks:
  - coverage report
 
 coverage:
-  path: coverage.py
+  path: coverage.xml
   parser: python
