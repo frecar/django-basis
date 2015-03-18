@@ -5,7 +5,7 @@ from django.conf import settings
 from django.utils import timezone
 
 from .compat import AUTH_USER_MODEL
-from .managers import PersistentModelManager
+from .managers import PersistentModelManager, BasisModelManager
 
 
 def _now():
@@ -52,6 +52,8 @@ class BasisModel(TimeStampModel, PersistentModel):
                                    related_name="%(class)s_created")
     updated_by = models.ForeignKey(AUTH_USER_MODEL, null=True, default=None, editable=False,
                                    related_name="%(class)s_updated")
+
+    objects = BasisModelManager()
 
     class Meta:
         abstract = True

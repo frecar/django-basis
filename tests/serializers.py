@@ -1,7 +1,7 @@
 from basis.serializers import BasisSerializer
-from .models import Person
+from .models import BasisPerson
 
 
 class PersonSerializer(BasisSerializer):
     class Meta:
-        model = Person
+        model = BasisPerson
