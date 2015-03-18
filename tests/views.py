@@ -1,8 +1,8 @@
 from rest_framework import viewsets
-from .models import Person
 from .serializers import PersonSerializer
+from .models import BasisPerson
 
 
 class BasisModelViewSet(viewsets.ModelViewSet):
-    queryset = Person.objects.all()
+    queryset = BasisPerson.objects.all()
     serializer_class = PersonSerializer
