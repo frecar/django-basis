@@ -1,6 +1,6 @@
 from django.db import models
-from .compat import DJANGO16
 
+from .compat import DJANGO16
 
 if DJANGO16:
     class PersistentModelManager(models.Manager):
