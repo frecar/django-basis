@@ -1,11 +1,11 @@
 from datetime import datetime
 
-from django.db import models
 from django.conf import settings
+from django.db import models
 from django.utils import timezone
 
 from .compat import AUTH_USER_MODEL
-from .managers import PersistentModelManager, BasisModelManager
+from .managers import BasisModelManager, PersistentModelManager
 
 
 def _now():
