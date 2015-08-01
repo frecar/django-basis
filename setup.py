@@ -1,5 +1,7 @@
 # -*- coding: utf8 -*-
 import os
+import re
+import sys
 from setuptools import setup, find_packages
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
@@ -12,10 +14,22 @@ def _read_long_description():
     except Exception:
         return None
 
+with open('basis/__init__.py', 'r') as fd:
+    version = re.search(
+        r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
+        fd.read(),
+        re.MULTILINE
+    ).group(1)
+
+try:
+    from semantic_release import setup_hook
+    setup_hook(sys.argv)
+except ImportError:
+    pass
 
 setup(
     name="django-basis",
-    version='0.3.6',
+    version=version,
     url='http://github.com/frecar/django-basis',
     author='Fredrik Carlsen',
     author_email='fredrik@carlsen.io',
