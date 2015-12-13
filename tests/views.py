@@ -1,6 +1,7 @@
 from rest_framework import viewsets
-from .serializers import PersonSerializer
+
 from .models import BasisPerson
+from .serializers import PersonSerializer
 
 
 class BasisModelViewSet(viewsets.ModelViewSet):

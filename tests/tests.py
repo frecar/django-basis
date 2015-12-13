@@ -1,14 +1,15 @@
 # -*- coding: utf8 -*-
 import sys
+import unittest
 from datetime import datetime
 
-from rest_framework.test import APITestCase, force_authenticate, APIRequestFactory
-
-from django.utils import unittest, timezone
+from django.contrib.auth import get_user_model
 from django.test.utils import override_settings
+from django.utils import timezone
+from rest_framework.test import (APIRequestFactory, APITestCase,
+                                 force_authenticate)
 
-from basis.compat import get_user_model
-from .models import TimeStampPerson, PersistentPerson, BasisPerson
+from .models import BasisPerson, PersistentPerson, TimeStampPerson
 from .views import BasisModelViewSet
 
 PY3 = sys.version_info[0] == 3

@@ -8,8 +8,8 @@
 ## Installation
     pip install django-basis
 
- - Python versions: 2.7, 3.4
- - Django versions: 1.4, 1.5, 1.6, 1.7, 1.8
+ - Python versions: 2.7, 3.5
+ - Django versions: 1.8, 1.9
  - Supports Django Custom User Model
 
 ## Documentation
