@@ -1,5 +1,5 @@
-from django.db import models
 from basis.models import BasisModel, PersistentModel, TimeStampModel
+from django.db import models
 
 
 class BasisPerson(BasisModel):

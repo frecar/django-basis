@@ -4,7 +4,6 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
-from .compat import AUTH_USER_MODEL
 from .managers import BasisModelManager, PersistentModelManager
 
 
@@ -48,9 +47,11 @@ class PersistentModel(models.Model):
 
 
 class BasisModel(TimeStampModel, PersistentModel):
-    created_by = models.ForeignKey(AUTH_USER_MODEL, null=True, default=None, editable=False,
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
+                                   default=None, editable=False,
                                    related_name="%(class)s_created")
-    updated_by = models.ForeignKey(AUTH_USER_MODEL, null=True, default=None, editable=False,
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
+                                   default=None, editable=False,
                                    related_name="%(class)s_updated")
 
     objects = BasisModelManager()
