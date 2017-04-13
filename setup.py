@@ -2,6 +2,7 @@
 import os
 import re
 import sys
+
 from setuptools import setup, find_packages
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
@@ -14,6 +15,7 @@ def _read_long_description():
     except Exception:
         return None
 
+
 with open('basis/__init__.py', 'r') as fd:
     version = re.search(
         r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
@@ -23,6 +25,7 @@ with open('basis/__init__.py', 'r') as fd:
 
 try:
     from semantic_release import setup_hook
+
     setup_hook(sys.argv)
 except ImportError:
     pass
